@@ -1,6 +1,6 @@
 # CARLIER Laurine - TP Fruits
 
-Deuxième TP en développement mobile pour la promotion CDA - DOTNET
+TP Fruits | CDA .NET
 
 ## Commentaires 
 
