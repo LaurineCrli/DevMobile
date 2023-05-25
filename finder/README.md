@@ -1,7 +1,8 @@
 # CARLIER Laurine - TP Finder
 
-Deuxième TP de la série Casino | CDA .NET
+TP Finder | CDA .NET
 
 ## Commentaires
 
-Premier essai du transfert de données entre deux pages. 
+Première partie du TP assez simple a appréhender, les listes étaient déjà comprises et ca m'a permis de consolider mes bases.
+Premier essai du transfert de données entre deux pages, assez complexe a comprendre au début. 
