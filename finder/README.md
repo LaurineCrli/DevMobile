@@ -1,6 +1,7 @@
-# TP Finder - CARLIER Laurine CDA
+# CARLIER Laurine - TP Finder
 
-Première partie du TP Finder | CDA .NET
+Deuxième TP de la série Casino | CDA .NET
 
 ## Commentaires
 
+Premier essai du transfert de données entre deux pages. 
