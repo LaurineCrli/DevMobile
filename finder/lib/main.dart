@@ -8,7 +8,7 @@ void main() {
 
 class FinderApp extends StatelessWidget {
   const FinderApp({super.key});
-
+ 
   @override
   Widget build(BuildContext context){
     return MaterialApp(
@@ -16,17 +16,18 @@ class FinderApp extends StatelessWidget {
     theme: ThemeData(
       primarySwatch: Colors.pink,
       ),
-      home: const FinderHomePage(title: 'FinderApp'),
+      home: const FinderHomePage(title: 'FinderApp', isFavorite: false),
     );
   }
 }
 
 class FinderHomePage extends StatefulWidget {
 
-  const FinderHomePage({super.key, required this.title});
+  const FinderHomePage({super.key, required this.title, required this.isFavorite});
+  
 
   final String title;
-
+  final bool isFavorite;
   
 
   @override
@@ -38,10 +39,18 @@ class _FinderHomePageState extends State<FinderHomePage>{
 
   BachelorManager bm = BachelorManager();
   late Bachelor currentBachelor;
+  late bool isFavorite;
 
+  void onTap(bool isFavorite, Bachelor bachelor){
+    setState(() {
+      bachelor.isFavorite = isFavorite;
+    });
+    
+  }
 
   @override
   Widget build(BuildContext context) {
+    isFavorite = false;
 
   bm.bachelorsBuilder();
   List<Bachelor> bachelorList = bm.bachelorList;
@@ -56,7 +65,7 @@ class _FinderHomePageState extends State<FinderHomePage>{
         currentBachelor = bachelorList[index];
         return Container(
           height: 60, 
-          color: Colors.pink[100],
+          color: bachelorList[index].isFavorite ? Colors.pink : Colors.pink[100],
           child: 
           GestureDetector(
             onTap: () => clickBachelor(bachelorList[index]),
@@ -82,7 +91,7 @@ class _FinderHomePageState extends State<FinderHomePage>{
   Bachelor clickBachelor(Bachelor bachelor){
     Navigator.push(
       context, 
-      MaterialPageRoute(builder: (context) => FinderDetailsPage(bachelor: bachelor))
+      MaterialPageRoute(builder: (context) => FinderDetailsPage(bachelor: bachelor, onTap: onTap))
     );
     return bachelor;
     
@@ -93,7 +102,8 @@ class _FinderHomePageState extends State<FinderHomePage>{
 class FinderDetailsPage extends StatefulWidget{
   
   final Bachelor bachelor;
-  const FinderDetailsPage({Key? key, required this.bachelor}) : super(key: key);
+  final Function onTap;
+  const FinderDetailsPage({Key? key, required this.bachelor, required this.onTap}) : super(key: key);
 
   @override
   State<FinderDetailsPage> createState() => _FinderDetailsPageState();
@@ -102,11 +112,12 @@ class FinderDetailsPage extends StatefulWidget{
 
 class _FinderDetailsPageState extends State<FinderDetailsPage>{
   late Bachelor bachelor;
-  bool _isFavorite = false;
+  late Function onTap;
 
   @override
   Widget build(BuildContext context) {
    bachelor = widget.bachelor;
+   onTap = widget.onTap;
    return Scaffold(
       appBar: AppBar(
         title: Text("${bachelor.firstname} ${bachelor.lastname}")
@@ -126,7 +137,7 @@ class _FinderDetailsPageState extends State<FinderDetailsPage>{
               ),
               IconButton(
                   icon: const Icon(Icons.favorite),
-                  color: _isFavorite ? Colors.pink : Colors.white,
+                  color: bachelor.isFavorite ? Colors.pink : Colors.white,
                   onPressed: () => _changeFavColor(),
                 )
               ]
@@ -168,8 +179,10 @@ class _FinderDetailsPageState extends State<FinderDetailsPage>{
   void _changeFavColor(){
     setState(() {
 
-      _isFavorite = !_isFavorite;
-      if (_isFavorite) {
+      
+      bachelor.isFavorite = !bachelor.isFavorite;
+      
+      if (bachelor.isFavorite) {
         const SnackBar snackBar = SnackBar(
           content: Text('Personne ajoutée a vos favoris'),
           backgroundColor: Colors.pink,
@@ -182,6 +195,7 @@ class _FinderDetailsPageState extends State<FinderDetailsPage>{
         );
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
+      onTap(bachelor.isFavorite, bachelor);
     });
   }
 
