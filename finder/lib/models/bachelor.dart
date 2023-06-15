@@ -8,6 +8,7 @@ class Bachelor{
   late String job;
   late String description;
   late bool isFavorite;
+  late bool isDisliked;
 
   Bachelor(String firstN, String lastN, Gender gend, String avat, List<Gender> searchF, String jb, String desc)
   {
@@ -19,9 +20,10 @@ class Bachelor{
     job = jb; 
     description = desc; 
     isFavorite = false;
+    isDisliked = false;
   }
 
 }
 
-enum Gender {male, female}
+enum Gender {male, female, both}
 

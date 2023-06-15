@@ -1,9 +1,16 @@
-# CARLIER Laurine - TP Finder
+# finder
 
-TP Finder | CDA .NET
+A new Flutter project.
 
-## Commentaires
+## Getting Started
 
-Première partie du TP assez simple a appréhender, les listes étaient déjà comprises et ca m'a permis de consolider mes bases.
-Premier essai du transfert de données entre deux pages, assez complexe a comprendre au début. 
-Le premier transfert de la page enfant a la page parent a été difficile a mettre en place pour une première fois, mais une fois le concept compris j'ai réussi a le mettre assez facilement en place dans mon code. 
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
